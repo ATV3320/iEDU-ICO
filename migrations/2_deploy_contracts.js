@@ -1,5 +1,5 @@
-const MyToken = artifacts.require("MyToken");
-const MyTokenSale = artifacts.require("MyTokenSale");
+const SampleBEP20Token = artifacts.require("SampleBEP20Token");
+const SampleBEP20TokenSale = artifacts.require("SampleBEP20TokenSale");
 
 module.exports = function (deployer) {
   deployer.deploy(MyToken, 1000000).then(function(){
