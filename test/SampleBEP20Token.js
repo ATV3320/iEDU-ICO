@@ -1,26 +1,26 @@
-const MyToken = artifacts.require("MyToken");
+const SampleBEP20Token = artifacts.require("SampleBEP20Token");
 
-contract('MyToken', function(accounts){
+contract('SampleBEP20Token', function(accounts){
     var tokenInstance;
     
     // checking name of the token
     it('initializes the contract with the correct values',function(){
-        return MyToken.deployed().then(function(instance){
+        return SampleBEP20Token.deployed().then(function(instance){
             tokenInstance = instance;
             return tokenInstance.name();
         }).then(function(name){
-            assert.equal(name, 'My Token', 'has the correct name');
+            assert.equal(name, 'SampleBEP20 Token', 'has the correct name');
             return tokenInstance.symbol();
         }).then(function(symbol){
-            assert.equal(symbol, 'MYT', 'has the correct symbol');
+            assert.equal(symbol, 'SBT', 'has the correct symbol');
             return tokenInstance.standard();
         }).then(function(standard){
-            assert.equal(standard, 'My token v1.0', 'has the correct standard');
+            assert.equal(standard, 'SampleBEP20 token v1.0', 'has the correct standard');
         })
     })
 
     it('allocates the initial supply upon deployment', function(){
-        return MyToken.deployed().then(function(instance){
+        return SampleBEP20Token.deployed().then(function(instance){
             tokenInstance = instance;
             return tokenInstance.totalSupply();
         }).then(function(totalSupply){
@@ -32,7 +32,7 @@ contract('MyToken', function(accounts){
        
     });
     it('transfers token ownership ', function(){
-        return MyToken.deployed().then(function(instance){
+        return SampleBEP20Token.deployed().then(function(instance){
             tokenInstance = instance;
             // test 'require' statement first by transferring something larger than the sender's balance
             // call doesn't modify any data
@@ -62,7 +62,7 @@ contract('MyToken', function(accounts){
     });
 
     it('approves tokens for delegated transfer', function(){
-        return MyToken.deployed().then(function(instance){
+        return SampleBEP20Token.deployed().then(function(instance){
             tokenInstance = instance;
             return tokenInstance.approve.call(accounts[1], 100);
         }).then(function(success){
@@ -82,7 +82,7 @@ contract('MyToken', function(accounts){
     });
 
     it('handles delegate transfer', function(){
-        return MyToken.deployed().then(function(instance){
+        return SampleBEP20Token.deployed().then(function(instance){
             tokenInstance = instance;
             fromAccount = accounts[2];
             toAccount = accounts[3];
